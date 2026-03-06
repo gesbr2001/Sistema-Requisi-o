@@ -1,0 +1,53 @@
+# CodeIgniter .gitignore
+/application/logs/*
+!/application/logs/index.html
+/application/cache/*
+!/application/cache/index.html
+
+# Composer
+/vendor/
+
+# User Guide
+/user_guide/
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.settings/
+.buildpath
+nbproject/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Desktop.ini
+
+# Environment/Sensitive files
+.env
+/application/config/database.php
+/application/config/config.php
+# Note: Keep local copies of the above for prod/dev, push .dist or .sample versions if needed.
+
+# Project particulars
+/temp/
+assets/cache/*
+!assets/cache/index.html
+*.log
+*.sql
+*.sql.gz
+*.zip
+*.tar.gz
+*.rar
+/uploads/*
+!/uploads/index.html
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Sistema de Requisições</title>
+
+<!-- Montserrat Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="<?= base_url('assets/favicon.png') ?>" type="image/png">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-blue: #0056b3;
+        --deep-blue: #003366;
+        --light-blue: #e7f1ff;
+        --gradient-blue: linear-gradient(135deg, #0056b3 0%, #003366 100%);
+        --accent-blue: #00a8ff;
+    }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f4f7fa;
+        color: #33475b;
+    }
+
+    .sidebar-blue {
+        background: var(--gradient-blue) !important;
+        box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-link {
+        transition: all 0.3s ease;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255,255,255,0.15);
+        transform: translateX(5px);
+    }
+
+    /* Beautiful Cards */
+    .card {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 8px 24px rgba(149, 157, 165, 0.15);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-dashboard {
+        color: white;
+        padding: 20px;
+    }
+
+    .card-protocolo { background: linear-gradient(135deg, #6610f2 0%, #003366 100%); }
+    .card-triagem { background: linear-gradient(135deg, #0d6efd 0%, #003366 100%); }
+    .card-separacao { background: linear-gradient(135deg, #0dcaf0 0%, #003366 100%); }
+    .card-expedicao { background: linear-gradient(135deg, #198754 0%, #003366 100%); }
+
+    /* Beautiful Buttons */
+    .btn {
+        border-radius: 10px;
+        padding: 8px 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary { background-color: var(--primary-blue); border: none; }
+    .btn-success { background-color: #198754; border: none; }
+    .btn-secondary { background-color: #6c757d; border: none; }
+
+    /* Tables */
+    .table-container {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    .table thead th {
+        background-color: var(--deep-blue) !important;
+        color: white !important;
+        border: none;
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .table thead th:first-child { border-top-left-radius: 12px; }
+    .table thead th:last-child { border-top-right-radius: 12px; }
+
+    .table td {
+        padding: 12px 15px;
+        vertical-align: middle;
+        font-size: 0.9rem;
+    }
+
+    /* Utilities */
+    .text-large { font-size: 2.2rem; font-weight: 800; }
+    .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+    .text-center-col { text-align: center; }
+
+    h2, h3, h4 { 
+        color: var(--deep-blue); 
+        font-weight: 800; 
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        margin-bottom: 25px;
+    }
+    
+    .btn {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="row">
