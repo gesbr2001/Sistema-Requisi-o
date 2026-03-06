@@ -67,7 +67,4 @@ O sistema cobre todo o ciclo de vida de uma requisição:
 
 ## 📄 Licença
 
-Este projeto é de uso privado e confidencial. Para permissões de uso ou contribuição, entre em contato com o administrador.
-
----
 
