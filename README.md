@@ -65,6 +65,3 @@ O sistema cobre todo o ciclo de vida de uma requisição:
 
 ---
 
-## 📄 Licença
-
-
