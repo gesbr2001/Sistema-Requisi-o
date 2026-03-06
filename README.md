@@ -71,4 +71,3 @@ Este projeto é de uso privado e confidencial. Para permissões de uso ou contri
 
 ---
 
-*Desenvolvido com foco na excelência da gestão logística hospitalar.*
