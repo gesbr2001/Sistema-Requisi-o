@@ -193,6 +193,28 @@
             margin-right: 5px;
             margin-bottom: 5px;
         }
+
+        .user-info-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 25px;
+        }
+
+        .user-badge {
+            background: #f0f7ff;
+            color: var(--primary-blue);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
     </style>
 
 </head>

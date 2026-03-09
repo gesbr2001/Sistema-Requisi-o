@@ -85,4 +85,14 @@
 
 </div>
 
-<div class="col-10 p-4">
+<div class="col-10 p-4" style="overflow-y: auto; height: 100vh;">
+    <div class="user-info-bar">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-user-circle fa-lg me-2 text-muted"></i>
+            <span class="fw-bold text-dark"><?= $this->session->userdata('nome') ?></span>
+            <span class="user-badge">
+                <i class="fas fa-tag me-1 small"></i>
+                <?= ucfirst(str_replace('_', ' ', $this->session->userdata('perfil'))) ?>
+            </span>
+        </div>
+    </div>

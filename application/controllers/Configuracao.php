@@ -269,4 +269,15 @@ class Configuracao extends CI_Controller
         $this->Motorista_model->deletar($id);
         redirect('configuracao/motoristas');
     }
+
+    public function logs()
+    {
+        $this->load->model('Logs_model');
+        $data['logs'] = $this->Logs_model->listar_todos();
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+        $this->load->view('configuracao/logs', $data);
+        $this->load->view('layout/footer');
+    }
 }

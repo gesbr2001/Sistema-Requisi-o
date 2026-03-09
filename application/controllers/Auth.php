@@ -1,9 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
 
-	public function index()
+    public function index()
     {
         $this->load->view('login');
     }
@@ -22,7 +23,7 @@ class Auth extends CI_Controller {
 
         $usuario = $this->Usuario_model->login($email);
 
-        if($usuario && password_verify($senha, $usuario->senha)){
+        if ($usuario && password_verify($senha, $usuario->senha)) {
 
             $this->session->set_userdata([
                 'id' => $usuario->id,
@@ -31,11 +32,14 @@ class Auth extends CI_Controller {
                 'logado' => true
             ]);
 
+            $this->load->model('Logs_model');
+            $this->Logs_model->registrar($usuario->id, 'Login');
+
             redirect('dashboard');
 
-        }else{
+        } else {
 
-            $this->session->set_flashdata('erro','Email ou senha inválidos');
+            $this->session->set_flashdata('erro', 'Email ou senha inválidos');
             redirect('auth/login');
 
         }
@@ -43,6 +47,9 @@ class Auth extends CI_Controller {
 
     public function logout()
     {
+        $this->load->model('Logs_model');
+        $this->Logs_model->registrar($this->session->userdata('id'), 'Logout');
+
         $this->session->sess_destroy();
         redirect('auth/login');
     }
