@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Login - Sistema de Requisições</title>
+    <title>Login - Protocolo Triagem</title>
     <!-- Montserrat Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="<?= base_url('assets/favicon.png') ?>" type="image/png">
-    
+
     <style>
         :root {
             --primary-blue: #0056b3;
@@ -43,15 +45,23 @@
         }
 
         .brand-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-blue);
+            width: 120px;
+            height: 120px;
+            background: white;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 51, 102, 0.1);
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .brand-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .brand-icon svg {
@@ -128,21 +138,21 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-container">
         <div class="login-card">
             <div class="brand-icon">
-                <!-- Pharmacy/Medical Cross Icon -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.11 3.89,21 5,21H19C20.11,21 21,20.11 21,19V5C21,3.89 20.11,3 19,3M19,19H5V5H19V19M11,17H13V13H17V11H13V7H11V11H7V13H11V17Z" />
-                </svg>
+                <img src="<?= base_url('assets/logo_unifarma.png') ?>" alt="Logo Unifarma">
             </div>
-            
-            <h2>Acesso</h2>
-            <p class="subtitle">Controle de Requisições Hospitalares</p>
 
-            <?php if($this->session->flashdata('erro')): ?>
+            <h2>Login</h2>
+            <p class="subtitle">Protocolo Triagem
+                <?= date('Y') ?>
+            </p>
+
+            <?php if ($this->session->flashdata('erro')): ?>
                 <div class="error-alert">
                     <?= $this->session->flashdata('erro') ?>
                 </div>
@@ -151,9 +161,9 @@
             <form method="post" action="<?= base_url('auth/autenticar') ?>">
                 <div class="mb-3 text-start">
                     <label class="form-label ms-1 small fw-bold">E-mail</label>
-                    <input type="email" name="email" class="form-control" placeholder="usuario@hospital.com" required>
+                    <input type="email" name="email" class="form-control" placeholder="usuario@organizacao" required>
                 </div>
-                
+
                 <div class="mb-4 text-start">
                     <label class="form-label ms-1 small fw-bold">Senha</label>
                     <input type="password" name="senha" class="form-control" placeholder="••••••••" required>
@@ -163,10 +173,11 @@
             </form>
 
             <div class="footer-text">
-                &copy; <?= date('Y') ?> Gestão de Almoxarifado
+                &copy; <?= date('Y') ?> Desenvolvido por Gabriel Estrela
             </div>
         </div>
     </div>
 
 </body>
+
 </html>

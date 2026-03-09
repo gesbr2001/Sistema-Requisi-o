@@ -1,4 +1,3 @@
-
 <h2>Dashboard</h2>
 
 <!-- Cards de Status -->
@@ -42,16 +41,17 @@
 <div class="table-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>Requisições em Andamento</h4>
-        
+
         <form method="get" class="d-flex gap-2">
             <select name="prioridade" class="form-select form-select-sm" style="width: 220px; border-radius: 10px;">
                 <option value="">Todas as Prioridades</option>
                 <option value="Normal" <?= $prioridade_selecionada == 'Normal' ? 'selected' : '' ?>>Normal</option>
                 <option value="Urgente" <?= $prioridade_selecionada == 'Urgente' ? 'selected' : '' ?>>Urgente</option>
-                <option value="Não Urgente" <?= $prioridade_selecionada == 'Não Urgente' ? 'selected' : '' ?>>Não Urgente</option>
+                <option value="Não Urgente" <?= $prioridade_selecionada == 'Não Urgente' ? 'selected' : '' ?>>Não Urgente
+                </option>
             </select>
             <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
-            <?php if($prioridade_selecionada): ?>
+            <?php if ($prioridade_selecionada): ?>
                 <a href="<?= base_url('dashboard') ?>" class="btn btn-outline-secondary btn-sm border-0">Limpar</a>
             <?php endif; ?>
         </form>
@@ -70,29 +70,30 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($requisicoes_ativas as $r): ?>
-                <tr>
-                    <td><strong>#<?= $r->id ?></strong></td>
-                    <td><?= $r->destino_nome ?></td>
-                    <td class="text-center">
-                        <?php if($r->prioridade): ?>
-                            <span class="status-badge <?= $r->prioridade == 'Urgente' ? 'bg-danger text-white' : ($r->prioridade == 'Normal' ? 'bg-info text-white' : 'bg-secondary text-white') ?>">
-                                <?= $r->prioridade ?>
+                <?php foreach ($requisicoes_ativas as $r): ?>
+                    <tr>
+                        <td><strong>#<?= $r->id ?></strong></td>
+                        <td><?= $r->destino_nome ?></td>
+                        <td class="text-center">
+                            <?php if ($r->prioridade): ?>
+                                <span
+                                    class="status-badge <?= $r->prioridade == 'Urgente' ? 'bg-danger text-white' : ($r->prioridade == 'Normal' ? 'bg-info text-white' : 'bg-secondary text-white') ?>">
+                                    <?= $r->prioridade ?>
+                                </span>
+                            <?php else: ?>
+                                <span class="text-muted small">Pendente</span>
+                            <?php endif; ?>
+                        </td>
+                        <td class="text-center">
+                            <span class="status-badge border text-dark" style="background-color: #f8f9fa;">
+                                <?= strtoupper($r->status) ?>
                             </span>
-                        <?php else: ?>
-                            <span class="text-muted small">Pendente</span>
-                        <?php endif; ?>
-                    </td>
-                    <td class="text-center">
-                        <span class="status-badge border text-dark" style="background-color: #f8f9fa;">
-                            <?= strtoupper($r->status) ?>
-                        </span>
-                    </td>
-                    <td><?= $r->numero_requisicao ?></td>
-                    <td><?= date('d/m/Y H:i', strtotime($r->data_protocolo)) ?></td>
-                </tr>
+                        </td>
+                        <td><?= $r->numero_requisicao ?></td>
+                        <td><?= date('d/m/Y H:i', strtotime($r->data_protocolo)) ?></td>
+                    </tr>
                 <?php endforeach; ?>
-                <?php if(empty($requisicoes_ativas)): ?>
+                <?php if (empty($requisicoes_ativas)): ?>
                     <tr>
                         <td colspan="6" class="text-center py-4 text-muted">Nenhuma requisição ativa encontrada.</td>
                     </tr>
