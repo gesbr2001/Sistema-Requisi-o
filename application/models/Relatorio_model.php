@@ -64,6 +64,16 @@ class Relatorio_model extends CI_Model
             ->result();
     }
 
+    public function get_daily_volume($start_date = null, $end_date = null)
+    {
+        $this->db->select('DATE(data_protocolo) as label, COUNT(*) as value');
+        $this->apply_filters($start_date, $end_date);
+        return $this->db->group_by('label')
+            ->order_by('label', 'ASC')
+            ->get('requisicoes')
+            ->result();
+    }
+
     private function apply_filters($start_date, $end_date)
     {
         if ($start_date) {

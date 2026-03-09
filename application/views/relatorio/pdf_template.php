@@ -29,10 +29,14 @@
         .chart-container { text-align: center; margin: 20px 0; }
         .chart-img { max-width: 100%; height: auto; max-height: 250px; }
         
-        .footer { position: fixed; bottom: 0; width: 100%; text-align: center; color: #999; font-size: 9px; border-top: 1px solid #eee; padding-top: 5px; }
+        .footer { position: fixed; bottom: 0; left: 0; right: 0; height: 30px; text-align: center; color: #999; font-size: 9px; border-top: 1px solid #eee; padding-top: 5px; }
         
         .page-break { page-break-after: always; }
         .clear { clear: both; }
+
+        /* Prevent orphan titles and breaking tables/rows */
+        .section-title, table, .row { page-break-inside: avoid; }
+        h1, p { page-break-after: avoid; }
     </style>
 </head>
 <body>
@@ -107,19 +111,53 @@
         <div class="clear"></div>
     </div>
 
-    <div class="page-break"></div>
+    <div class="row">
+        <div class="col" style="width: 65%;">
+            <div class="section-title">Volume Diário de Separação</div>
+            <div class="chart-container">
+                <?php if ($chart_daily): ?>
+                    <img src="<?= $chart_daily ?>" class="chart-img" style="max-height: 180px;">
+                <?php else: ?>
+                    <p style="color: #999;">Gráfico não disponível</p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="col-right" style="width: 30%;">
+            <div class="section-title">Participação (%)</div>
+            <div class="chart-container">
+                <?php if ($chart_participation): ?>
+                    <img src="<?= $chart_participation ?>" class="chart-img" style="max-height: 180px;">
+                <?php else: ?>
+                    <p style="color: #999;">Gráfico não disponível</p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
 
-    <div class="section-title">Top 10 Separadores</div>
+
+
+    <div class="section-title">Produtividade de Separadores (Base 8h43m)</div>
     <table>
         <thead>
-            <tr><th>Separador</th><th>Quantidade</th></tr>
+            <tr>
+                <th>Separador</th>
+                <th style="text-align: center;">Total de Requisições</th>
+                <th style="text-align: center;">Média p/ Hora</th>
+            </tr>
         </thead>
         <tbody>
-            <?php foreach (array_slice($by_separator, 0, 10) as $s): ?>
-                <tr><td><?= $s->label ?></td><td><?= $s->value ?></td></tr>
+            <?php foreach ($productivity as $p): ?>
+                <tr>
+                    <td><strong><?= $p->label ?></strong></td>
+                    <td style="text-align: center;"><?= $p->total ?></td>
+                    <td style="text-align: center; color: #0d6efd;"><strong><?= $p->avg_hour ?></strong></td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
+
 
     <div class="section-title">Top 10 Conferentes</div>
     <table>

@@ -25,6 +25,18 @@ class Relatorio extends CI_Controller
         $data['by_driver'] = $this->Relatorio_model->get_count_by_driver($start_date, $end_date);
         $data['by_group'] = $this->Relatorio_model->get_count_by_group($start_date, $end_date);
         $data['by_delivery_status'] = $this->Relatorio_model->get_count_by_delivery_status($start_date, $end_date);
+        $data['by_daily'] = $this->Relatorio_model->get_daily_volume($start_date, $end_date);
+
+        // Cálculo de Produtividade (Base 8h43m = 8.7167h)
+        $data['productivity'] = [];
+        $work_hours = 8.7167;
+        foreach ($data['by_separator'] as $s) {
+            $data['productivity'][] = (object) [
+                'label' => $s->label,
+                'total' => $s->value,
+                'avg_hour' => number_format($s->value / $work_hours, 2, ',', '.')
+            ];
+        }
 
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar');
@@ -105,6 +117,8 @@ class Relatorio extends CI_Controller
         // Recebe imagens dos gráficos do frontend
         $data['chart_group'] = $this->input->post('chart_group');
         $data['chart_delivery'] = $this->input->post('chart_delivery');
+        $data['chart_daily'] = $this->input->post('chart_daily');
+        $data['chart_participation'] = $this->input->post('chart_participation');
 
         $data['start_date'] = $start_date;
         $data['end_date'] = $end_date;
@@ -115,6 +129,18 @@ class Relatorio extends CI_Controller
         $data['by_driver'] = $this->Relatorio_model->get_count_by_driver($start_date, $end_date);
         $data['by_group'] = $this->Relatorio_model->get_count_by_group($start_date, $end_date);
         $data['by_delivery_status'] = $this->Relatorio_model->get_count_by_delivery_status($start_date, $end_date);
+        $data['by_daily'] = $this->Relatorio_model->get_daily_volume($start_date, $end_date);
+
+        // Cálculo de Produtividade (Base 8h43m = 8.7167h)
+        $data['productivity'] = [];
+        $work_hours = 8.7167;
+        foreach ($data['by_separator'] as $s) {
+            $data['productivity'][] = (object) [
+                'label' => $s->label,
+                'total' => $s->value,
+                'avg_hour' => number_format($s->value / $work_hours, 2, ',', '.')
+            ];
+        }
 
         // Renderiza a view do PDF
         $html = $this->load->view('relatorio/pdf_template', $data, TRUE);

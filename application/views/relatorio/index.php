@@ -183,6 +183,70 @@
             </div>
         </div>
     </div>
+
+    <!-- New Charts Row -->
+    <div class="row mb-5">
+        <div class="col-md-8 mb-4">
+            <div class="card border-0 shadow-sm p-4">
+                <h5 class="card-title mb-4">Volume Diário de Separação</h5>
+                <div style="height: 300px;">
+                    <canvas id="dailyChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card border-0 shadow-sm p-4">
+                <h5 class="card-title mb-4">Participação dos Separadores (%)</h5>
+                <div style="height: 300px;">
+                    <canvas id="participationChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Productivity Section -->
+    <div class="card border-0 shadow-sm p-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="card-title mb-0">Produtividade de Separadores (Base 8h43m)</h5>
+            <span class="badge bg-info-subtle text-info border border-info-subtle">Meta: Requi p/ Hora</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Separador</th>
+                        <th class="text-center">Total de Requisições</th>
+                        <th class="text-center">Média p/ Hora</th>
+                        <th>Status / Progresso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($productivity as $p): ?>
+                        <tr>
+                            <td class="fw-bold"><?= $p->label ?></td>
+                            <td class="text-center">
+                                <span class="badge bg-light text-dark border"><?= $p->total ?></span>
+                            </td>
+                            <td class="text-center">
+                                <div class="fw-bold text-primary"><?= $p->avg_hour ?></div>
+                                <small class="text-muted" style="font-size: 10px;">itens/hora</small>
+                            </td>
+                            <td style="width: 30%;">
+                                <?php
+                                $val = (float) str_replace(',', '.', $p->avg_hour);
+                                $percent = min(100, ($val / 50) * 100); // Exemplo: meta de 50 itens/hora
+                                $color = $val > 40 ? 'bg-success' : ($val > 20 ? 'bg-primary' : 'bg-warning');
+                                ?>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar <?= $color ?>" role="progressbar"
+                                        style="width: <?= $percent ?>%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div> <!-- Fim de reportContent -->
 
 <!-- Bibliotecas para Gráficos e PDF -->
@@ -255,6 +319,72 @@
         }
     });
 
+    // Gráfico de Volume Diário
+    const dailyCtx = document.getElementById('dailyChart').getContext('2d');
+    new Chart(dailyCtx, {
+        type: 'line',
+        data: {
+            labels: <?= json_encode(array_map(function ($d) {
+                return date('d/m', strtotime($d->label)); }, $by_daily)) ?>,
+            datasets: [{
+                label: 'Requisições',
+                data: <?= json_encode(array_column($by_daily, 'value')) ?>,
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointBackgroundColor: '#0d6efd'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                y: { beginAtZero: true, grid: { borderDash: [5, 5] } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+
+    // Gráfico de Participação (%)
+    const participationCtx = document.getElementById('participationChart').getContext('2d');
+    new Chart(participationCtx, {
+        type: 'pie',
+        data: {
+            labels: <?= json_encode(array_column($by_separator, 'label')) ?>,
+            datasets: [{
+                data: <?= json_encode(array_column($by_separator, 'value')) ?>,
+                backgroundColor: [
+                    '#0d6efd', '#20c997', '#ffc107', '#fd7e14', '#6610f2', '#6f42c1', '#d63384', '#dc3545', '#adb5bd'
+                ],
+                borderWidth: 2,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { boxWidth: 12, padding: 15, font: { size: 10 } }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.label || '';
+                            let value = context.parsed || 0;
+                            let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            let percentage = ((value / total) * 100).toFixed(1) + '%';
+                            return label + ': ' + value + ' (' + percentage + ')';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
     // Função para Gerar PDF (Dompdf via Servidor)
     async function generatePDF() {
         const btn = document.querySelector('[onclick="generatePDF()"]');
@@ -266,6 +396,8 @@
             // Captura os gráficos como Base64
             const groupChartImg = document.getElementById('groupChart').toDataURL('image/png');
             const deliveryChartImg = document.getElementById('deliveryChart').toDataURL('image/png');
+            const dailyChartImg = document.getElementById('dailyChart').toDataURL('image/png');
+            const participationChartImg = document.getElementById('participationChart').toDataURL('image/png');
 
             // Cria um formulário temporário para enviar os dados via POST
             const form = document.createElement('form');
@@ -277,7 +409,9 @@
                 'start_date': '<?= $start_date ?>',
                 'end_date': '<?= $end_date ?>',
                 'chart_group': groupChartImg,
-                'chart_delivery': deliveryChartImg
+                'chart_delivery': deliveryChartImg,
+                'chart_daily': dailyChartImg,
+                'chart_participation': participationChartImg
             };
 
             for (const name in fields) {
