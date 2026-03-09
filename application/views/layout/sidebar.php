@@ -87,12 +87,35 @@
 
 <div class="col-10 p-4" style="overflow-y: auto; height: 100vh;">
     <div class="user-info-bar">
-        <div class="d-flex align-items-center">
-            <i class="fas fa-user-circle fa-lg me-2 text-muted"></i>
-            <span class="fw-bold text-dark"><?= $this->session->userdata('nome') ?></span>
-            <span class="user-badge">
-                <i class="fas fa-tag me-1 small"></i>
-                <?= ucfirst(str_replace('_', ' ', $this->session->userdata('perfil'))) ?>
-            </span>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false" style="color: inherit;">
+                <i class="fas fa-user-circle fa-lg me-2 text-muted"></i>
+                <span class="fw-bold text-dark me-2"><?= $this->session->userdata('nome') ?></span>
+                <span class="user-badge">
+                    <i class="fas fa-tag me-1 small"></i>
+                    <?= ucfirst(str_replace('_', ' ', $this->session->userdata('perfil'))) ?>
+                </span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown"
+                style="border-radius: 12px; min-width: 200px;">
+                <li class="px-3 py-2 border-bottom mb-1 bg-light" style="border-radius: 12px 12px 0 0;">
+                    <div class="small text-muted text-uppercase fw-bold" style="font-size: 0.65rem;">Minha Conta</div>
+                    <div class="fw-bold"><?= $this->session->userdata('nome') ?></div>
+                </li>
+                <li>
+                    <a class="dropdown-item py-2 px-3" href="<?= base_url('perfil/trocar_senha') ?>">
+                        <i class="fas fa-key me-2 text-muted"></i> Alterar Senha
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider opacity-25">
+                </li>
+                <li>
+                    <a class="dropdown-item py-2 px-3 text-danger" href="<?= base_url('auth/logout') ?>">
+                        <i class="fas fa-sign-out-alt me-2"></i> Sair do Sistema
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
