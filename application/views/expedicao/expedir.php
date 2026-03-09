@@ -9,22 +9,31 @@
             <div class="col-md-3"><strong>Conferente:</strong> <?= $requisicao->conferente ?></div>
         </div>
 
-        <form method="post" action="<?= base_url('expedicao/processar/'.$requisicao->id) ?>">
-            
+        <form method="post" action="<?= base_url('expedicao/processar/' . $requisicao->id) ?>">
+
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Motorista</label>
-                    <input type="text" name="motorista" class="form-control" value="<?= $requisicao->motorista ?>" required>
+                    <select name="motorista" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <?php foreach ($motoristas as $m): ?>
+                            <option value="<?= $m->nome ?>" <?= $m->nome == $requisicao->motorista ? 'selected' : '' ?>>
+                                <?= $m->nome ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Placa do Carro</label>
-                    <input type="text" name="placa_carro" class="form-control" value="<?= $requisicao->placa_carro ?>" required>
+                    <input type="text" name="placa_carro" class="form-control" value="<?= $requisicao->placa_carro ?>"
+                        required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Quantidade de Volumes</label>
-                    <input type="number" name="qtd_volume" class="form-control" value="<?= $requisicao->qtd_volume ?>" required>
+                    <input type="number" name="qtd_volume" class="form-control" value="<?= $requisicao->qtd_volume ?>"
+                        required>
                 </div>
             </div>
 

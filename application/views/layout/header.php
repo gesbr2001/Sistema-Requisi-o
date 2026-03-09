@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Sistema de Requisições</title>
+    <title>Sistema de Protocolo</title>
 
     <!-- Montserrat Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

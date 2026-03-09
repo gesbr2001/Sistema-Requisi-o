@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Expedicao extends CI_Controller {
+class Expedicao extends CI_Controller
+{
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Requisicao_model');
+        $this->load->model('Motorista_model');
     }
 
     public function index()
@@ -22,10 +24,12 @@ class Expedicao extends CI_Controller {
     public function expedir($id)
     {
         $data['requisicao'] = $this->Requisicao_model->buscar_por_id($id);
-        
+
         if (!$data['requisicao'] || $data['requisicao']->status != 'expedicao') {
             redirect('expedicao');
         }
+
+        $data['motoristas'] = $this->Motorista_model->listar();
 
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar');
@@ -36,7 +40,7 @@ class Expedicao extends CI_Controller {
     public function processar($id)
     {
         $sub_status = $this->input->post('status_expedicao'); // CAF, em rota, entregue
-        
+
         $dados = [
             'motorista' => $this->input->post('motorista'),
             'placa_carro' => $this->input->post('placa_carro'),

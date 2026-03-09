@@ -46,6 +46,12 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link text-white" href="<?= base_url('configuracao') ?>">
+                Configurações
+            </a>
+        </li>
+
         <li class="nav-item mt-auto pt-4">
             <hr class="mx-3 opacity-25">
             <a class="nav-link text-white py-3" href="<?= base_url('auth/logout') ?>"

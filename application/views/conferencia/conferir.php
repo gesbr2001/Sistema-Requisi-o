@@ -14,19 +14,16 @@
             </div>
         </div>
 
-        <form method="post" action="<?= base_url('conferencia/processar/'.$requisicao->id) ?>">
-            
+        <form method="post" action="<?= base_url('conferencia/processar/' . $requisicao->id) ?>">
+
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Conferente</label>
                     <select name="conferente" class="form-select" required>
                         <option value="">Selecione...</option>
-                        <option value="DAMIANA">DAMIANA</option>
-                        <option value="GILBERTO">GILBERTO</option>
-                        <option value="EDUARDO">EDUARDO</option>
-                        <option value="KALYNE">KALYNE</option>
-                        <option value="PAULO">PAULO</option>
-                        <option value="CRESCIANO">CRESCIANO</option>
+                        <?php foreach ($conferentes as $c): ?>
+                            <option value="<?= $c->nome ?>"><?= $c->nome ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 

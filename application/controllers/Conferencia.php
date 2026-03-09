@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Conferencia extends CI_Controller {
+class Conferencia extends CI_Controller
+{
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Requisicao_model');
+        $this->load->model('Conferente_model');
     }
 
     public function index()
@@ -22,10 +24,12 @@ class Conferencia extends CI_Controller {
     public function conferir($id)
     {
         $data['requisicao'] = $this->Requisicao_model->buscar_por_id($id);
-        
+
         if (!$data['requisicao'] || $data['requisicao']->status != 'conferencia') {
             redirect('conferencia');
         }
+
+        $data['conferentes'] = $this->Conferente_model->listar();
 
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar');
