@@ -12,10 +12,10 @@
                 <th>Local Solicitante</th>
                 <th>Grupo</th>
                 <th>Tipo</th>
-                <th>Nº Req.</th>
-                <th>C. Custo</th>
-                <th class="text-center">Entrega/Status</th>
-                <th>Prioridade / Enviar</th>
+                <th>Requi.</th>
+                <th>C.C</th>
+                <th class="text-center">Status</th>
+                <th>Prioridade</th>
             </tr>
         </thead>
         <tbody>

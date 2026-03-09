@@ -8,11 +8,11 @@
                 <th>Local Solicitante</th>
                 <th>Grupo</th>
                 <th>Tipo</th>
-                <th>Nº Req.</th>
-                <th>C. Custo</th>
+                <th>Requi.</th>
+                <th>C.C</th>
                 <th class="text-center">Prioridade</th>
-                <th class="text-center">Entrega/Status</th>
-                <th>Separador / Enviar</th>
+                <th class="text-center">Status</th>
+                <th>Separador</th>
             </tr>
         </thead>
         <tbody>
