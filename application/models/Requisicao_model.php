@@ -91,4 +91,40 @@ class Requisicao_model extends CI_Model
             ->get()
             ->result();
     }
+
+    public function buscar_historico_conferencia($data = null)
+    {
+        $this->db->select('r.*, d.locais_solicitantes as destino_nome')
+            ->from('requisicoes r')
+            ->join('destinos d', 'r.destino_id = d.id', 'left')
+            ->where('r.data_conferencia IS NOT NULL');
+
+        if ($data) {
+            $this->db->where('DATE(r.data_conferencia)', $data);
+        } else {
+            $this->db->where('DATE(r.data_conferencia)', date('Y-m-d'));
+        }
+
+        return $this->db->order_by('r.data_conferencia', 'DESC')
+            ->get()
+            ->result();
+    }
+
+    public function buscar_historico_expedicao($data = null)
+    {
+        $this->db->select('r.*, d.locais_solicitantes as destino_nome')
+            ->from('requisicoes r')
+            ->join('destinos d', 'r.destino_id = d.id', 'left')
+            ->where('r.data_expedicao IS NOT NULL');
+
+        if ($data) {
+            $this->db->where('DATE(r.data_expedicao)', $data);
+        } else {
+            $this->db->where('DATE(r.data_expedicao)', date('Y-m-d'));
+        }
+
+        return $this->db->order_by('r.data_expedicao', 'DESC')
+            ->get()
+            ->result();
+    }
 }

@@ -59,4 +59,16 @@ class Expedicao extends CI_Controller
         $this->Requisicao_model->atualizar($id, $dados);
         redirect('expedicao');
     }
+
+    public function historico()
+    {
+        $data = $this->input->get('data') ?: date('Y-m-d');
+        $data_view['requisicoes'] = $this->Requisicao_model->buscar_historico_expedicao($data);
+        $data_view['data_selecionada'] = $data;
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+        $this->load->view('expedicao/historico', $data_view);
+        $this->load->view('layout/footer');
+    }
 }

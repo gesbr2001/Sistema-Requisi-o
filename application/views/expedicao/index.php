@@ -1,3 +1,11 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Expedição</h3>
+    <a href="<?= base_url('expedicao/historico') ?>" class="btn btn-outline-primary shadow-sm bg-white"
+        style="border-radius: 10px;">
+        <i class="fas fa-history me-2"></i> Ver Histórico do Dia
+    </a>
+</div>
+
 <div class="table-container">
     <table class="table table-hover">
         <thead>
