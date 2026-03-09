@@ -41,9 +41,11 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Status da Expedição</label>
                     <select name="status_expedicao" class="form-select" required>
-                        <option value="CAF">Na CAF</option>
-                        <option value="em rota">Em Rota</option>
-                        <option value="entregue">Entregue (Finalizar)</option>
+                        <option value="CAF" <?= $requisicao->status_expedicao == 'CAF' ? 'selected' : '' ?>>Na CAF</option>
+                        <option value="em rota" <?= $requisicao->status_expedicao == 'em rota' ? 'selected' : '' ?>>Em Rota
+                        </option>
+                        <option value="entregue" <?= $requisicao->status_expedicao == 'entregue' ? 'selected' : '' ?>>
+                            Entregue (Finalizar)</option>
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">

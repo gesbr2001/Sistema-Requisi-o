@@ -3,39 +3,53 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Local Solicitante</th>
+                <th>Local</th>
                 <th>Nº Req.</th>
-                <th>Separador</th>
-                <th>Conferente</th>
-                <th class="text-center">Status</th>
-                <th>Ação</th>
+                <th class="text-center">Prioridade</th>
+                <th>Equipe</th>
+                <th class="text-center">Status Expedição</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($requisicoes as $r): ?>
-            <tr>
-                <td><strong>#<?= $r->id ?></strong></td>
-                <td><?= $r->destino_nome ?></td>
-                <td><?= $r->numero_requisicao ?></td>
-                <td><?= $r->separador ?></td>
-                <td><?= $r->conferente ?></td>
-                <td class="text-center">
-                    <span class="status-badge border text-dark" style="background-color: #f8f9fa;">
-                        <?= strtoupper($r->status) ?>
-                    </span>
-                    <?php 
-                    if($r->observacao_expedicao && strpos($r->observacao_expedicao, '[') === 0) {
-                        $sub = substr($r->observacao_expedicao, 0, strpos($r->observacao_expedicao, ']') + 1);
-                        echo "<br><span class='status-badge bg-info text-white'>$sub</span>";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <a href="<?= base_url('expedicao/expedir/'.$r->id) ?>" class="btn btn-primary btn-sm">
-                        Expedir
-                    </a>
-                </td>
-            </tr>
+            <?php foreach ($requisicoes as $r): ?>
+                <tr>
+                    <td><strong>#<?= $r->id ?></strong></td>
+                    <td><?= $r->destino_nome ?></td>
+                    <td><?= $r->numero_requisicao ?></td>
+                    <td class="text-center">
+                        <?php if ($r->prioridade): ?>
+                            <span
+                                class="status-badge <?= $r->prioridade == 'Urgente' ? 'bg-danger text-white' : ($r->prioridade == 'Normal' ? 'bg-info text-white' : 'bg-secondary text-white') ?>">
+                                <?= $r->prioridade ?>
+                            </span>
+                        <?php else: ?>
+                            <span class="text-muted small">Pendente</span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <small>
+                            <strong>Sep:</strong> <?= $r->separador ?><br>
+                            <strong>Conf:</strong> <?= $r->conferente ?>
+                        </small>
+                    </td>
+                    <td class="text-center">
+                        <?php
+                        $status_cor = $r->status_expedicao == 'em rota' ? 'bg-success text-white' : 'bg-light text-dark border';
+                        ?>
+                        <span class="status-badge <?= $status_cor ?>">
+                            <?= strtoupper($r->status_expedicao) ?>
+                        </span>
+                        <?php if ($r->motorista): ?>
+                            <br><small class="text-muted"><?= $r->motorista ?></small>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="<?= base_url('expedicao/expedir/' . $r->id) ?>" class="btn btn-primary btn-sm">
+                            Expedir
+                        </a>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>

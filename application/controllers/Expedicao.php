@@ -45,7 +45,7 @@ class Expedicao extends CI_Controller
             'motorista' => $this->input->post('motorista'),
             'placa_carro' => $this->input->post('placa_carro'),
             'qtd_volume' => $this->input->post('qtd_volume'),
-            'status_expedicao' => "[$sub_status] " . $this->input->post('status_expedicao'),
+            'status_expedicao' => $sub_status,
             'data_expedicao' => date('Y-m-d H:i:s')
         ];
 
