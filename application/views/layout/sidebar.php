@@ -68,8 +68,14 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link text-white" href="<?= base_url('relatorio') ?>">
+                <i></i> Relatórios
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('configuracao') ?>">
-                Configurações
+                <i></i> Configurações
             </a>
         </li>
 

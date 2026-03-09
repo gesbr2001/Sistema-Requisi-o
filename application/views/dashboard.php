@@ -86,8 +86,9 @@
                             <?php endif; ?>
                         </td>
                         <td class="text-center">
-                            <span class="status-badge border <?= $r->status_protocolo == 'EXTRA' ? 'bg-danger text-white' : 'text-dark' ?>" 
-                                  style="<?= $r->status_protocolo == 'EXTRA' ? '' : 'background-color: #f8f9fa;' ?>">
+                            <span
+                                class="status-badge border <?= $r->status_protocolo == 'EXTRA' ? 'bg-danger text-white' : 'text-dark' ?>"
+                                style="<?= $r->status_protocolo == 'EXTRA' ? '' : 'background-color: #f8f9fa;' ?>">
                                 <?= strtoupper($r->status_protocolo) ?>
                             </span>
                         </td>
