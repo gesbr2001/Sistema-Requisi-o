@@ -2,8 +2,11 @@
 class Destino_model extends CI_Model
 {
 
-    public function listar()
+    public function listar($busca = null)
     {
+        if ($busca) {
+            $this->db->like('locais_solicitantes', $busca);
+        }
         return $this->db->get('destinos')->result();
     }
 

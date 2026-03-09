@@ -10,8 +10,14 @@ class Usuario_model extends CI_Model
             ->row();
     }
 
-    public function listar()
+    public function listar($busca = null)
     {
+        if ($busca) {
+            $this->db->group_start()
+                ->like('nome', $busca)
+                ->or_like('email', $busca)
+                ->group_end();
+        }
         return $this->db->get('usuarios')->result();
     }
 

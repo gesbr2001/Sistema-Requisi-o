@@ -29,7 +29,9 @@ class Configuracao extends CI_Controller
     // --- Destinos (Locais Solicitantes) ---
     public function destinos()
     {
-        $data['itens'] = $this->Destino_model->listar();
+        $busca = $this->input->get('busca');
+        $data['itens'] = $this->Destino_model->listar($busca);
+        $data['busca'] = $busca;
         $data['titulo'] = "Locais Solicitantes";
         $data['tipo'] = "destinos";
         $data['prefixo'] = "destino";
@@ -90,7 +92,9 @@ class Configuracao extends CI_Controller
     // --- Separadores ---
     public function separadores()
     {
-        $data['itens'] = $this->Separador_model->listar();
+        $busca = $this->input->get('busca');
+        $data['itens'] = $this->Separador_model->listar($busca);
+        $data['busca'] = $busca;
         $data['titulo'] = "Separadores";
         $data['tipo'] = "separadores";
         $data['prefixo'] = "separador";
@@ -151,7 +155,9 @@ class Configuracao extends CI_Controller
     // --- Conferentes ---
     public function conferentes()
     {
-        $data['itens'] = $this->Conferente_model->listar();
+        $busca = $this->input->get('busca');
+        $data['itens'] = $this->Conferente_model->listar($busca);
+        $data['busca'] = $busca;
         $data['titulo'] = "Conferentes";
         $data['tipo'] = "conferentes";
         $data['prefixo'] = "conferente";
@@ -212,7 +218,9 @@ class Configuracao extends CI_Controller
     // --- Motoristas ---
     public function motoristas()
     {
-        $data['itens'] = $this->Motorista_model->listar();
+        $busca = $this->input->get('busca');
+        $data['itens'] = $this->Motorista_model->listar($busca);
+        $data['busca'] = $busca;
         $data['titulo'] = "Motoristas";
         $data['tipo'] = "motoristas";
         $data['prefixo'] = "motorista";
@@ -285,7 +293,9 @@ class Configuracao extends CI_Controller
     public function usuarios()
     {
         $this->load->model('Usuario_model');
-        $data['usuarios'] = $this->Usuario_model->listar();
+        $busca = $this->input->get('busca');
+        $data['usuarios'] = $this->Usuario_model->listar($busca);
+        $data['busca'] = $busca;
 
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar');

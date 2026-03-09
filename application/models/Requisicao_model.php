@@ -76,7 +76,7 @@ class Requisicao_model extends CI_Model
             ->result();
     }
 
-    public function buscar_ativas($prioridade = null)
+    public function buscar_ativas($prioridade = null, $busca = null)
     {
         $this->db->select('r.*, d.locais_solicitantes as destino_nome')
             ->from('requisicoes r')
@@ -85,6 +85,10 @@ class Requisicao_model extends CI_Model
 
         if ($prioridade) {
             $this->db->where('r.prioridade', $prioridade);
+        }
+
+        if ($busca) {
+            $this->db->like('r.numero_requisicao', $busca);
         }
 
         return $this->db->order_by('r.id', 'DESC')

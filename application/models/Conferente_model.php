@@ -2,8 +2,11 @@
 class Conferente_model extends CI_Model
 {
 
-    public function listar()
+    public function listar($busca = null)
     {
+        if ($busca) {
+            $this->db->like('nome', $busca);
+        }
         return $this->db->get('conferentes')->result();
     }
 

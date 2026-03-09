@@ -8,10 +8,24 @@
             </ol>
         </nav>
     </div>
-    <a href="<?= base_url('configuracao/usuario_novo') ?>" class="btn btn-primary shadow-sm"
-        style="border-radius: 10px;">
-        <i class="fas fa-plus me-2"></i> Novo Usuário
-    </a>
+    <div class="d-flex gap-3 align-items-center">
+        <form method="get" class="d-flex gap-2">
+            <input type="text" name="busca" class="form-control form-control-sm" placeholder="Pesquisar..."
+                value="<?= $busca ?? '' ?>" style="width: 200px; border-radius: 10px;">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fas fa-search"></i>
+            </button>
+            <?php if (!empty($busca)): ?>
+                <a href="<?= base_url('configuracao/usuarios') ?>"
+                    class="btn btn-outline-secondary btn-sm border-0">Limpar</a>
+            <?php endif; ?>
+        </form>
+
+        <a href="<?= base_url('configuracao/usuario_novo') ?>" class="btn btn-primary shadow-sm"
+            style="border-radius: 10px;">
+            <i class="fas fa-plus me-2"></i> Novo Usuário
+        </a>
+    </div>
 </div>
 
 <div class="card border-0 shadow-sm" style="border-radius: 15px;">

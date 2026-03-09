@@ -43,6 +43,9 @@
         <h4>Requisições em Andamento</h4>
 
         <form method="get" class="d-flex gap-2">
+            <input type="text" name="busca" class="form-control form-control-sm" placeholder="Nº Requisição..."
+                value="<?= $busca_selecionada ?>" style="width: 180px; border-radius: 10px;">
+
             <select name="prioridade" class="form-select form-select-sm" style="width: 220px; border-radius: 10px;">
                 <option value="">Todas as Prioridades</option>
                 <option value="Normal" <?= $prioridade_selecionada == 'Normal' ? 'selected' : '' ?>>Normal</option>
@@ -51,7 +54,7 @@
                 </option>
             </select>
             <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
-            <?php if ($prioridade_selecionada): ?>
+            <?php if ($prioridade_selecionada || $busca_selecionada): ?>
                 <a href="<?= base_url('dashboard') ?>" class="btn btn-outline-secondary btn-sm border-0">Limpar</a>
             <?php endif; ?>
         </form>
