@@ -35,12 +35,17 @@
                 </td>
                 <td>
                     <?php if ($r->status == 'protocolo'): ?>
-                        <a href="<?= base_url('protocolo/editar/'.$r->id) ?>" class="btn btn-primary btn-sm">
-                            Editar
-                        </a>
-                        <a href="<?= base_url('protocolo/enviarTriagem/'.$r->id) ?>" class="btn btn-success btn-sm">
-                            Enviar Triagem
-                        </a>
+                        <div class="d-flex gap-1">
+                            <a href="<?= base_url('protocolo/editar/'.$r->id) ?>" class="btn btn-primary btn-sm" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="<?= base_url('protocolo/enviarTriagem/'.$r->id) ?>" class="btn btn-success btn-sm" title="Enviar Triagem">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="<?= base_url('protocolo/excluir/'.$r->id) ?>" class="btn btn-outline-danger btn-sm" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir esta requisição?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
                     <?php endif; ?>
                 </td>
             </tr>

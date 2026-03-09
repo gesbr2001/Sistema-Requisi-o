@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Triagem extends CI_Controller {
+class Triagem extends CI_Controller
+{
 
     public function __construct()
     {
@@ -40,5 +41,11 @@ class Triagem extends CI_Controller {
         $this->load->view('layout/sidebar');
         $this->load->view('triagem/historico', $data);
         $this->load->view('layout/footer');
+    }
+
+    public function excluir($id)
+    {
+        $this->Requisicao_model->deletar($id);
+        redirect('triagem');
     }
 }

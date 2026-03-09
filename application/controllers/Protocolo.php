@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Protocolo extends CI_Controller {
+class Protocolo extends CI_Controller
+{
 
     public function __construct()
     {
@@ -19,7 +20,7 @@ class Protocolo extends CI_Controller {
         $this->load->view('protocolo/index', $data);
         $this->load->view('layout/footer');
     }
-    
+
     public function novo()
     {
         $data['destinos'] = $this->Destino_model->listar();
@@ -33,16 +34,16 @@ class Protocolo extends CI_Controller {
     public function salvar()
     {
         $dados = [
-            'numero_requisicao'  => $this->input->post('numero_requisicao'),
-            'destino_id'         => $this->input->post('destino_id'),
-            'grupo'              => $this->input->post('grupo'),
-            'tipo_requisicao'    => $this->input->post('tipo_requisicao'),
-            'centro_custo'       => $this->input->post('centro_custo'),
-            'status'             => 'protocolo',
-            'status_protocolo'   => $this->input->post('entrega_status'), 
+            'numero_requisicao' => $this->input->post('numero_requisicao'),
+            'destino_id' => $this->input->post('destino_id'),
+            'grupo' => $this->input->post('grupo'),
+            'tipo_requisicao' => $this->input->post('tipo_requisicao'),
+            'centro_custo' => $this->input->post('centro_custo'),
+            'status' => 'protocolo',
+            'status_protocolo' => $this->input->post('entrega_status'),
             'observacao_protocolo' => $this->input->post('observacao_protocolo'),
-            'data_protocolo'     => date('Y-m-d H:i:s'),
-            'usuario_id'         => $this->session->userdata('id')
+            'data_protocolo' => date('Y-m-d H:i:s'),
+            'usuario_id' => $this->session->userdata('id')
         ];
 
         $this->Requisicao_model->criar($dados);
@@ -52,7 +53,7 @@ class Protocolo extends CI_Controller {
     public function editar($id)
     {
         $data['requisicao'] = $this->Requisicao_model->buscar_por_id($id);
-        
+
         if (!$data['requisicao'] || $data['requisicao']->status != 'protocolo') {
             redirect('protocolo');
         }
@@ -68,12 +69,12 @@ class Protocolo extends CI_Controller {
     public function atualizar($id)
     {
         $dados = [
-            'numero_requisicao'  => $this->input->post('numero_requisicao'),
-            'destino_id'         => $this->input->post('destino_id'),
-            'grupo'              => $this->input->post('grupo'),
-            'tipo_requisicao'    => $this->input->post('tipo_requisicao'),
-            'centro_custo'       => $this->input->post('centro_custo'),
-            'status_protocolo'   => $this->input->post('entrega_status'), 
+            'numero_requisicao' => $this->input->post('numero_requisicao'),
+            'destino_id' => $this->input->post('destino_id'),
+            'grupo' => $this->input->post('grupo'),
+            'tipo_requisicao' => $this->input->post('tipo_requisicao'),
+            'centro_custo' => $this->input->post('centro_custo'),
+            'status_protocolo' => $this->input->post('entrega_status'),
             'observacao_protocolo' => $this->input->post('observacao_protocolo')
         ];
 
@@ -95,5 +96,11 @@ class Protocolo extends CI_Controller {
         $this->load->view('layout/sidebar');
         $this->load->view('protocolo/historico', $data);
         $this->load->view('layout/footer');
+    }
+
+    public function excluir($id)
+    {
+        $this->Requisicao_model->deletar($id);
+        redirect('protocolo');
     }
 }

@@ -127,4 +127,9 @@ class Requisicao_model extends CI_Model
             ->get()
             ->result();
     }
+
+    public function deletar($id)
+    {
+        return $this->db->where('id', $id)->delete('requisicoes');
+    }
 }
