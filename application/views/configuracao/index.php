@@ -66,6 +66,21 @@
         </a>
     </div>
 
+    <!-- Usuários -->
+    <div class="col-md-4 col-lg-3 mb-4">
+        <a href="<?= base_url('configuracao/usuarios') ?>" class="text-decoration-none h-100 d-block">
+            <div class="card card-dashboard h-100 shadow-sm border-0 bg-dark text-white">
+                <div class="card-body text-center py-5">
+                    <div class="icon-circle mb-3 mx-auto bg-white bg-opacity-25 ripple">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold">Gestão de Usuários</h5>
+                    <p class="small mb-0 opacity-75">Controle de acessos</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
     <!-- Logs de Acesso -->
     <div class="col-md-4 col-lg-3 mb-4">
         <a href="<?= base_url('configuracao/logs') ?>" class="text-decoration-none h-100 d-block">

@@ -280,4 +280,69 @@ class Configuracao extends CI_Controller
         $this->load->view('configuracao/logs', $data);
         $this->load->view('layout/footer');
     }
+
+    // --- Usuários ---
+    public function usuarios()
+    {
+        $this->load->model('Usuario_model');
+        $data['usuarios'] = $this->Usuario_model->listar();
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+        $this->load->view('configuracao/usuarios_lista', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function usuario_novo()
+    {
+        $data['titulo'] = "Novo Usuário";
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+        $this->load->view('configuracao/usuarios_formulario', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function usuario_editar($id)
+    {
+        $this->load->model('Usuario_model');
+        $data['usuario'] = $this->Usuario_model->buscar_por_id($id);
+        $data['titulo'] = "Editar Usuário";
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+        $this->load->view('configuracao/usuarios_formulario', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function usuario_salvar()
+    {
+        $this->load->model('Usuario_model');
+        $id = $this->input->post('id');
+
+        $dados = [
+            'nome' => $this->input->post('nome'),
+            'email' => $this->input->post('email'),
+            'perfil' => $this->input->post('perfil')
+        ];
+
+        if (!$id) {
+
+            $dados['senha'] = password_hash('123456', PASSWORD_DEFAULT);
+            $dados['status'] = 1;
+            $this->Usuario_model->criar($dados);
+        } else {
+
+            $this->Usuario_model->atualizar($id, $dados);
+        }
+
+        redirect('configuracao/usuarios');
+    }
+
+    public function usuario_status($id, $status)
+    {
+        $this->load->model('Usuario_model');
+        $this->Usuario_model->atualizar($id, ['status' => $status]);
+        redirect('configuracao/usuarios');
+    }
 }
