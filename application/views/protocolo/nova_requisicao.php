@@ -3,13 +3,13 @@
 <div class="card">
     <div class="card-body">
         <form method="post" action="<?= base_url('protocolo/salvar') ?>">
-            
+
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Locais Solicitantes</label>
                     <select name="destino_id" class="form-select" required>
                         <option value="">Selecione um local</option>
-                        <?php foreach($destinos as $d): ?>
+                        <?php foreach ($destinos as $d): ?>
                             <option value="<?= $d->id ?>"><?= $d->locais_solicitantes ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -24,7 +24,7 @@
                         <option value="EXTRA">EXTRA</option>
                         <option value="ESTRATEGICO">ESTRATEGICO</option>
                         <option value="ODONTO">ODONTO</option>
-                        <option value="NUTRICAO">NUTRICAO</option>
+                        <option value="NUTRICAO">NUTRIÇÃO</option>
                     </select>
                 </div>
 
@@ -36,6 +36,12 @@
                         <option value="MMH">MMH</option>
                         <option value="CONTROLADO">CONTROLADO</option>
                         <option value="CURATIVO ESPECIAL">CURATIVO ESPECIAL</option>
+                        <option value="FRALDAS">FRALDAS</option>
+                        <option value="DIETAS">DIETAS</option>
+                        <option value="ODONTO">ODONTO</option>
+                        <option value="MMH_MED">MMH e MED</option>
+                        <option value="HEMODIALISE">HEMODIALISE</option>
+
                     </select>
                 </div>
             </div>
@@ -53,7 +59,7 @@
                         <option value="ITENS CRITICOS">ITENS CRITICOS</option>
                         <option value="ODONTO">ODONTO</option>
                         <option value="DEMANJA JUDICIAL">DEMANJA JUDICIAL</option>
-                        <option value="NUTRICÇÃO">NUTRICÇÃO</option>
+                        <option value="NUTRIÇÃO">NUTRIÇÃO</option>
                         <option value="DST AIDS">DST AIDS</option>
                     </select>
                 </div>

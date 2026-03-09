@@ -64,6 +64,7 @@
                     <th>ID</th>
                     <th>Local Solicitante</th>
                     <th class="text-center">Prioridade</th>
+                    <th class="text-center">Entrega/Status</th>
                     <th class="text-center">Status Atual</th>
                     <th>Nº Req.</th>
                     <th>Data de Início</th>
@@ -83,6 +84,12 @@
                             <?php else: ?>
                                 <span class="text-muted small">Pendente</span>
                             <?php endif; ?>
+                        </td>
+                        <td class="text-center">
+                            <span class="status-badge border <?= $r->status_protocolo == 'EXTRA' ? 'bg-danger text-white' : 'text-dark' ?>" 
+                                  style="<?= $r->status_protocolo == 'EXTRA' ? '' : 'background-color: #f8f9fa;' ?>">
+                                <?= strtoupper($r->status_protocolo) ?>
+                            </span>
                         </td>
                         <td class="text-center">
                             <span class="status-badge border text-dark" style="background-color: #f8f9fa;">

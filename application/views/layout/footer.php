@@ -1,3 +1,6 @@
+<div class="mt-5 pb-3 text-center text-muted small border-top pt-3">
+    Sistema desenvolvido por <strong>Gabriel Estrela</strong>
+</div>
 </div>
 </div>
 </div>

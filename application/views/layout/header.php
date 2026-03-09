@@ -83,19 +83,23 @@
         }
 
         .card-protocolo {
-            background: linear-gradient(135deg, #6610f2 0%, #003366 100%);
+            background: linear-gradient(135deg, #0d6efd 0%, #003366 100%);
+            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.2);
         }
 
         .card-triagem {
-            background: linear-gradient(135deg, #0d6efd 0%, #003366 100%);
+            background: linear-gradient(135deg, #fd7e14 0%, #bc5100 100%);
+            box-shadow: 0 10px 20px rgba(253, 126, 20, 0.2);
         }
 
         .card-separacao {
-            background: linear-gradient(135deg, #0dcaf0 0%, #003366 100%);
+            background: linear-gradient(135deg, #6f42c1 0%, #3e1b80 100%);
+            box-shadow: 0 10px 20px rgba(111, 66, 193, 0.2);
         }
 
         .card-expedicao {
-            background: linear-gradient(135deg, #198754 0%, #003366 100%);
+            background: linear-gradient(135deg, #198754 0%, #0a4d2e 100%);
+            box-shadow: 0 10px 20px rgba(25, 135, 84, 0.2);
         }
 
         /* Beautiful Buttons */
