@@ -64,7 +64,6 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Local Solicitante</th>
                     <th class="text-center">Prioridade</th>
                     <th class="text-center">Entrega/Status</th>
@@ -76,7 +75,6 @@
             <tbody>
                 <?php foreach ($requisicoes_ativas as $r): ?>
                     <tr>
-                        <td><strong>#<?= $r->id ?></strong></td>
                         <td><?= $r->destino_nome ?></td>
                         <td class="text-center">
                             <?php if ($r->prioridade): ?>

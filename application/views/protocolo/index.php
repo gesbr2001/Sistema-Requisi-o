@@ -11,7 +11,6 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Local Solicitante</th>
                 <th>Grupo</th>
                 <th>Tipo</th>
@@ -24,7 +23,6 @@
         <tbody>
             <?php foreach ($requisicoes as $r): ?>
                 <tr>
-                    <td><strong>#<?= $r->id ?></strong></td>
                     <td><?= $r->destino_nome ?></td>
                     <td><?= $r->grupo ?></td>
                     <td><?= $r->tipo_requisicao ?></td>

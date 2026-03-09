@@ -6,44 +6,44 @@
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('dashboard') ?>">
-                Dashboard
+                <i class="bi bi-house-fill me-2"></i> Dashboard
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('protocolo') ?>">
-                Protocolo
+                <i class="bi bi-archive-fill me-2"></i> Protocolo
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('triagem') ?>">
-                Triagem
+                <i class="bi bi-funnel-fill me-2"></i> Triagem
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('separacao') ?>">
-                Separação
+                <i class="bi bi-box-seam-fill me-2"></i> Separação
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('conferencia') ?>">
-                Conferência
+                <i class="bi bi-clipboard-check-fill me-2"></i> Conferência
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('expedicao') ?>">
-                Expedição
+                <i class="bi bi-truck me-2"></i> Expedição
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
                 href="#collapseHistorico" role="button" aria-expanded="false" aria-controls="collapseHistorico">
-                <span>Históricos</span>
+                <span><i class="bi bi-hourglass-split me-2"></i> Históricos</span>
                 <i class="fas fa-chevron-right small rotate-icon"></i>
             </a>
             <div class="collapse" id="collapseHistorico">
@@ -69,13 +69,13 @@
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('relatorio') ?>">
-                <i></i> Relatórios
+                <i class="bi bi-bar-chart-fill me-2"></i> Relatórios
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link text-white" href="<?= base_url('configuracao') ?>">
-                <i></i> Configurações
+                <i class="bi bi-gear-fill me-2"></i> Configurações
             </a>
         </li>
 

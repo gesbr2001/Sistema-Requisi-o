@@ -2,7 +2,6 @@
     <table class="table table-hover table-sm">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Data</th>
                 <th>Local Solicitante</th>
                 <th>Nº Req.</th>
@@ -15,7 +14,6 @@
         <tbody>
             <?php foreach ($requisicoes as $r): ?>
                 <tr>
-                    <td><strong>#<?= $r->id ?></strong></td>
                     <td><small><?= date('d/m/Y H:i', strtotime($r->data_protocolo)) ?></small></td>
                     <td><?= $r->destino_nome ?></td>
                     <td><?= $r->numero_requisicao ?></td>

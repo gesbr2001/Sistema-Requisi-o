@@ -35,7 +35,7 @@
                 <input type="date" name="end_date" class="form-control form-control-sm" value="<?= $end_date ?>">
             </div>
             <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fas fa-filter me-1"></i> Filtrar
+                <i></i> Filtrar
             </button>
             <a href="<?= base_url('relatorio') ?>" class="btn btn-outline-secondary btn-sm">
                 Limpar
@@ -325,7 +325,8 @@
         type: 'line',
         data: {
             labels: <?= json_encode(array_map(function ($d) {
-                return date('d/m', strtotime($d->label)); }, $by_daily)) ?>,
+                return date('d/m', strtotime($d->label));
+            }, $by_daily)) ?>,
             datasets: [{
                 label: 'Requisições',
                 data: <?= json_encode(array_column($by_daily, 'value')) ?>,

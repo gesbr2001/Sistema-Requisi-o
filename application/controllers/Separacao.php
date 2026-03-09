@@ -31,7 +31,16 @@ class Separacao extends CI_Controller
         ];
 
         $this->Requisicao_model->atualizar($id, $dados);
-
         redirect('separacao');
+    }
+
+    public function imprimir_termica($id)
+    {
+        $data['r'] = $this->Requisicao_model->buscar_por_id($id);
+        if (!$data['r']) {
+            show_404();
+        }
+
+        $this->load->view('separacao/impressao_termica', $data);
     }
 }
